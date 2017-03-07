@@ -1,3 +1,67 @@
+var ColorPicker = React.createClass({
+    getInitialState: function() {
+        return {
+            color: '#6195ED'
+        };
+    },
+
+    componentDidMount: function() {
+        this.props.onColorChange(this.state.color);
+    },
+
+    handleClick: function(event) {
+        event.preventDefault();
+
+        var target = event.target,
+            newColor = target.dataset.color;
+
+        this.props.onColorChange(newColor);
+
+        this.setState({
+            color: newColor
+        });
+    },
+
+    render: function() {
+        var colors = [
+            {
+                id: 1,
+                color: '#6195ED'
+            },
+            {
+                id: 2,
+                color: '#C561ED'
+            },
+            {
+                id: 3,
+                color: '#ED6177'
+            },
+            {
+                id: 4,
+                color: '#EDD961'
+            },
+            {
+                id: 5,
+                color: '#6BED61'
+            }
+        ];
+
+        return (
+            <div className="colorPicker">
+                <ul className="colorPicker__list">
+                    {
+                        colors.map(function(item) {
+                            var isActive = item.color === this.state.color ? 'active' : '';
+
+                            return <li key={item.id} className="colorPicker__item"><a href="#" data-color={item.color} style={{backgroundColor: item.color}} className={"colorPicker__link " + isActive} onClick={this.handleClick}></a></li>;
+                        }, this)
+                    }
+                </ul>
+            </div>
+        );
+    }
+});
+
 var Note = React.createClass({
     render: function() {
         var style = {
@@ -16,8 +80,15 @@ var Note = React.createClass({
 var NoteEditor = React.createClass({
     getInitialState: function() {
         return {
-            text: ''
+            text: '',
+            color: 'yellow'
         };
+    },
+
+    handleColorChange: function(color) {
+        this.setState({
+            color: color
+        });
     },
 
     handleTextChange: function(event) {
@@ -31,7 +102,7 @@ var NoteEditor = React.createClass({
     handleClick: function() {
         var newNote = {
             text: this.state.text,
-            color: 'yellow',
+            color: this.state.color,
             id: Date.now()
         };
 
@@ -47,6 +118,7 @@ var NoteEditor = React.createClass({
             <div className="note-editor">
                 <textarea placeholder="Enter your text here.." rows={5} className="textarea" value={this.state.text} onChange={this.handleTextChange} />
                 <button className="add-button" onClick={this.handleClick}>Add</button>
+                <ColorPicker onColorChange={this.handleColorChange} />
             </div>
         );
     }
@@ -131,9 +203,9 @@ var NotesApp = React.createClass({
     render: function() {
         return (
             <div className="notes-app">
-            NotesApp
-            <NoteEditor onNoteAdd={this.handleNoteAdd} />
-            <NotesGrid notes={this.state.notes} onNoteDelete={this.handleNoteDelete} />
+                <div className="app-header">NotesApp</div>
+                <NoteEditor onNoteAdd={this.handleNoteAdd} />
+                <NotesGrid notes={this.state.notes} onNoteDelete={this.handleNoteDelete} />
             </div>
         );
     },
