@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Hello world</title>
+    <link rel="stylesheet" href="css/style.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.14.0/react.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.14.0/react-dom.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.6.15/browser.js"></script>
@@ -14,27 +15,75 @@
     var Timer = React.createClass({
         getInitialState: function() {
             return {
-                seconds: 0
+                seconds: 0,
+                isPaused: true
             }
         },
 
-        componentDidMount: function() {
-            this.timer = setInterval(this.tick, 1000);
-        },
-
         tick: function() {
-            this.setState({
-                seconds: this.state.seconds + 1
-            });
+            this.setState({ seconds: this.state.seconds + 1 });
         },
 
         componentWillUnmount: function() {
             clearInterval(this.timer);
         },
 
+        handlePause: function(event) {
+            event.preventDefault();
+
+            var isPaused = !this.state.isPaused;
+
+            if (isPaused) {
+
+                clearInterval(this.timer);
+                this.timer = false;
+
+            } else {
+
+                if (!this.timer) {
+
+                    this.timer = setInterval(this.tick, 1000);
+
+                }
+
+            }
+
+            this.setState({
+                isPaused: isPaused
+            });
+        },
+
+        handleReset: function(event) {
+            event.preventDefault();
+
+            clearInterval(this.timer);
+            this.timer = false;
+
+            this.setState({
+                isPaused: true,
+                seconds: 0
+            });
+        },
+
         render: function() {
+            var icon = this.state.isPaused ? '►' : '❚ ❚';
+
             return (
-                <h4>Уже прошло {this.state.seconds} секунд.</h4>
+                <div className="timer">
+                    <div className="timer__wrapper">
+                        <div className="timer__header">
+                            <a className="timer__button timer__play" href="#" onClick={this.handlePause}> {icon} </a>
+                        </div>
+
+                        <div className="timer__content">
+                            <div className="timer__counter"> {this.state.seconds} </div>
+                        </div>
+
+                        <div className="timer__footer">
+                            <a className="timer__button timer__reset" href="#" onClick={this.handleReset}>&#8634;</a>
+                        </div>
+                    </div>
+                </div>
             );
         }
     });
