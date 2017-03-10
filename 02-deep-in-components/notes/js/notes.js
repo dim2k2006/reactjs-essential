@@ -1,3 +1,34 @@
+var Search = React.createClass({
+    getInitialState: function() {
+        return {
+            text: ''
+        };
+    },
+
+    handleChange: function(event) {
+        var text =  event.target.value;
+
+        this.props.onSearch(text);
+
+        this.setState({
+            text: text
+        });
+    },
+
+    render: function() {
+        return (
+            <div className="search">
+                <div className="search__wrapper">
+                    <div className="search__content">
+                        <input type="text" className="search__input" onChange={this.handleChange}/>
+                        <button className="search__button"></button>
+                    </div>
+                </div>
+            </div>
+        );
+    }
+});
+
 var ColorPicker = React.createClass({
     getInitialState: function() {
         return {
@@ -189,7 +220,7 @@ var NotesApp = React.createClass({
 
         this.setState({
             notes: newNotes
-        })
+        });
     },
 
     handleNoteAdd: function(newNote) {
@@ -200,10 +231,25 @@ var NotesApp = React.createClass({
         });
     },
 
+    handleNoteSearch: function(query) {
+        if (!this.notesAll) {
+            this.notesAll = this.state.notes;
+        }
+
+        var newNotes = this.notesAll.filter(function(item) {
+            return item.text.indexOf(query) !== -1;
+        });
+
+        this.setState({
+            notes: newNotes
+        });
+    },
+
     render: function() {
         return (
             <div className="notes-app">
                 <div className="app-header">NotesApp</div>
+                <Search onSearch={this.handleNoteSearch} />
                 <NoteEditor onNoteAdd={this.handleNoteAdd} />
                 <NotesGrid notes={this.state.notes} onNoteDelete={this.handleNoteDelete} />
             </div>
