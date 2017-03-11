@@ -46,3 +46,9 @@
 .todoRouter__link.todoRouter_state_active {
     color: #111;
 }
+
+@media (max-width: 768px) {
+    .todoRouter__link {
+        font-size: 18px;
+    }
+}

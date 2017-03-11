@@ -3,3 +3,9 @@
     display: block;
     padding: 50px 50px;
 }
+
+@media (max-width: 768px) {
+    .globalWrapper {
+        padding: 15px;
+    }
+}

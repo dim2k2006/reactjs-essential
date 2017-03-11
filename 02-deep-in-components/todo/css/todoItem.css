@@ -29,10 +29,12 @@
     min-height: 45px;
     padding-top: 10px;
     padding-left: 60px;
+    padding-right: 65px;
     color: #111;
     cursor: pointer;
     user-select: none;
     transition: color .2s ease;
+    -webkit-tap-highlight-color: transparent;
 }
 
 .todoItem__icon {
@@ -76,8 +78,36 @@
     cursor: pointer;
     transform: rotate(45deg);
     transition: color .2s ease;
+    -webkit-tap-highlight-color: transparent;
 }
 
 .todoItem__close:hover {
     color: #111;
+}
+
+@media (max-width: 768px) {
+    .todoItem__label {
+        min-height: 20px;
+        padding-top: 0;
+        padding-left: 30px;
+        padding-right: 40px;
+        font-size: 16px;
+    }
+
+    .todoItem__icon {
+        width: 20px;
+        height: 20px;
+        border-width: 2px;
+    }
+
+    .todoItem__icon:after {
+        background-size: 14px 14px;
+    }
+
+    .todoItem__close {
+        width: 30px;
+        height: 30px;
+        top: -6px;
+        line-height: 30px;
+    }
 }
