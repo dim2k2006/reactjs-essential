@@ -42,6 +42,16 @@ Todo = React.createClass({
         });
     },
 
+    onItemChange: function(item) {
+        item.status = item.status === 'default' ? 'completed' : 'default';
+
+        let newTodoList = this.state.todoList.slice();
+
+        this.setState({
+            todoList: newTodoList
+        });
+    },
+
     render: function() {
         return (
             <div className="todo">
@@ -56,7 +66,7 @@ Todo = React.createClass({
                         <ul className="todo__list">
                             {
                                 this.state.todoList.map(function(item) {
-                                    return <li key={item.id} className="todo__item"><TodoItem id={item.id} text={item.text} onItemRemove={this.onItemRemove.bind(null, item)} /></li>
+                                    return <li key={item.id} className="todo__item"><TodoItem id={item.id} text={item.text} status={item.status} onItemRemove={this.onItemRemove.bind(null, item)} onItemChange={this.onItemChange.bind(null, item)} /></li>
                                 }, this)
                             }
                         </ul>

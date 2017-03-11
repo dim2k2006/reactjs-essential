@@ -19,7 +19,7 @@ TodoField = React.createClass({
             const newItem = {
                 id: Date.now(),
                 text: this.state.text,
-                status: 'new'
+                status: 'default'
             };
 
             this.props.onItemAdd(newItem);
