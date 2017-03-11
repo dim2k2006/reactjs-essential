@@ -52,6 +52,10 @@ Todo = React.createClass({
         });
     },
 
+    onSort: function(item) {
+        console.log('sort');
+    },
+
     render: function() {
         return (
             <div className="todo">
@@ -75,7 +79,7 @@ Todo = React.createClass({
 
                 <div className="todo__footer">
                     <div className="todo__router">
-                        <TodoRouter />
+                        <TodoRouter onSort={this.onSort} />
                     </div>
                 </div>
             </div>

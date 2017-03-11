@@ -41,6 +41,7 @@
     line-height: 1;
     color: #CCCCCC;
     text-decoration: none;
+    cursor: pointer;
 }
 
 .todoRouter__link.todoRouter_state_active {
