@@ -11,7 +11,7 @@ TodoItem = React.createClass({
                         <div className="todoItem__text"> {this.props.text} </div>
                     </label>
 
-                    <div className="todoItem__close" title="Delete item">+</div>
+                    <div className="todoItem__close" title="Delete item" onClick={this.props.onItemRemove}>+</div>
                 </div>
             </div>
         );
