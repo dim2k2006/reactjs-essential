@@ -1,0 +1,83 @@
+.todoItem {
+    position: relative;
+    display: block;
+}
+
+.todoItem__wrapper {
+    position: relative;
+    display: block;
+}
+
+.todoItem__input {
+    position: absolute;
+    left: -9999px;
+}
+
+.todoItem__input:checked + .todoItem__label .todoItem__icon {
+    border-color: #72BB53;
+    background-color: #72BB53;
+}
+
+.todoItem__input:checked + .todoItem__label {
+    color: #CCCCCC;
+}
+
+.todoItem__label {
+    position: relative;
+    display: block;
+    width: 100%;
+    min-height: 45px;
+    padding-top: 10px;
+    padding-left: 60px;
+    color: #111;
+    cursor: pointer;
+    user-select: none;
+    transition: color .2s ease;
+}
+
+.todoItem__icon {
+    position: absolute;
+    display: block;
+    width: 45px;
+    height: 45px;
+    left: 0;
+    top: 0;
+    border: 3px solid #111;
+    border-radius: 3px;
+    transition: border-color .2s ease, background-color .2s ease;
+}
+
+.todoItem__icon:after {
+    content: '';
+    position: absolute;
+    display: block;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiB2aWV3Qm94PSIwIDAgMjYgMjYiIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDI2IDI2IiB3aWR0aD0iNTEycHgiIGhlaWdodD0iNTEycHgiPiAgPHBhdGggZD0ibS4zLDE0Yy0wLjItMC4yLTAuMy0wLjUtMC4zLTAuN3MwLjEtMC41IDAuMy0wLjdsMS40LTEuNGMwLjQtMC40IDEtMC40IDEuNCwwbC4xLC4xIDUuNSw1LjljMC4yLDAuMiAwLjUsMC4yIDAuNywwbDEzLjQtMTMuOWgwLjF2LTguODgxNzhlLTE2YzAuNC0wLjQgMS0wLjQgMS40LDBsMS40LDEuNGMwLjQsMC40IDAuNCwxIDAsMS40bDAsMC0xNiwxNi42Yy0wLjIsMC4yLTAuNCwwLjMtMC43LDAuMy0wLjMsMC0wLjUtMC4xLTAuNy0wLjNsLTcuOC04LjQtLjItLjN6IiBmaWxsPSIjRkZGRkZGIi8+PC9zdmc+);
+    background-size: 25px 25px;
+}
+
+.todoItem__close {
+    position: absolute;
+    display: block;
+    width: 45px;
+    height: 45px;
+    top: 0;
+    right: 0;
+    font-size: 30px;
+    line-height: 45px;
+    color: #CCCCCC;
+    text-align: center;
+    z-index: 2;
+    cursor: pointer;
+    transform: rotate(45deg);
+    transition: color .2s ease;
+}
+
+.todoItem__close:hover {
+    color: #111;
+}

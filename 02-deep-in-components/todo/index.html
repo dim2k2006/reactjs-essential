@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Todo list</title>
+
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/globalWrapper.css">
+    <link rel="stylesheet" href="css/todo.css">
+    <link rel="stylesheet" href="css/todoField.css">
+    <link rel="stylesheet" href="css/todoItem.css">
+    <link rel="stylesheet" href="css/todoRouter.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.14.0/react.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.14.0/react-dom.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.6.15/browser.js"></script>
+</head>
+<body>
+    <div id="mount-point" class="globalWrapper"></div>
+
+    <script>
+        let Todo = '';
+        let TodoField = '';
+        let TodoItem = '';
+        let TodoRouter = '';
+    </script>
+
+    <script type="text/babel" src="js/todo.js"></script>
+    <script type="text/babel" src="js/todoField.js"></script>
+    <script type="text/babel" src="js/todoItem.js"></script>
+    <script type="text/babel" src="js/todoRouter.js"></script>
+
+    <script type="text/babel">
+        ReactDOM.render(
+            <Todo />,
+            document.querySelector('#mount-point')
+        );
+    </script>
+</body>
+</html>
