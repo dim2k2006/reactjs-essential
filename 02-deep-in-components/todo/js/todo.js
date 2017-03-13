@@ -1,6 +1,7 @@
 Todo = React.createClass({
     getInitialState: function() {
         return {
+            initialTodoList: [],
             todoList: []
         };
     },
@@ -11,6 +12,7 @@ Todo = React.createClass({
         if (localTodoList) {
 
             this.setState({
+                initialTodoList: localTodoList,
                 todoList: localTodoList
             })
 
@@ -27,6 +29,7 @@ Todo = React.createClass({
         newTodoList.unshift(item);
 
         this.setState({
+            initialTodoList: newTodoList,
             todoList: newTodoList
         });
     },
@@ -38,6 +41,7 @@ Todo = React.createClass({
         });
 
         this.setState({
+            initialTodoList: newTodoList,
             todoList: newTodoList
         });
     },
@@ -48,12 +52,39 @@ Todo = React.createClass({
         let newTodoList = this.state.todoList.slice();
 
         this.setState({
+            initialTodoList: newTodoList,
             todoList: newTodoList
         });
     },
 
     onSort: function(item) {
-        console.log('sort');
+        const sortType = item.status;
+        let newTodoList = [];
+        const date = new Date();
+
+        if (sortType === 'all') {
+
+            newTodoList = this.state.initialTodoList;
+
+        } else if (sortType === 'new') {
+
+            newTodoList = this.state.initialTodoList.filter(function(item) {
+                let diff = parseInt((date.getTime() - item.id) / 60000);
+
+                return diff < 1;
+            });
+
+        } else if (sortType === 'completed') {
+
+            newTodoList = this.state.initialTodoList.filter(function(item) {
+                return item.status === 'completed'
+            });
+
+        }
+
+        this.setState({
+            todoList: newTodoList
+        });
     },
 
     render: function() {
@@ -87,7 +118,7 @@ Todo = React.createClass({
     },
 
     _updateLocalStorage: function() {
-        const todoList = JSON.stringify(this.state.todoList);
+        const todoList = JSON.stringify(this.state.initialTodoList);
 
         localStorage.setItem('todoList', todoList);
     }

@@ -5,16 +5,19 @@ TodoRouter = React.createClass({
                 {
                     id: 0,
                     text: 'All',
+                    status: 'all',
                     isActive: true
                 },
                 {
                     id: 1,
                     text: 'New',
+                    status: 'new',
                     isActive: false
                 },
                 {
                     id: 2,
                     text: 'Completed',
+                    status: 'completed',
                     isActive: false
                 }
             ]
