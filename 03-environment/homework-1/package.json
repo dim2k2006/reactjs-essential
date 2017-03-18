@@ -1,0 +1,31 @@
+{
+  "name": "react-project",
+  "version": "0.1.0",
+  "description": "Reactjs project",
+  "main": "main.js",
+  "scripts": {
+    "devserver": "webpack-dev-server --debug --hot --devtool eval-source-map --output-pathinfo --watch --colors --inline --content-base public --port 3000 --host localhost"
+  },
+  "author": {
+    "name": "Dmitry Malofeev"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "autoprefixer-loader": "^3.2.0",
+    "babel-core": "^6.24.0",
+    "babel-loader": "^6.4.0",
+    "babel-preset-es2015": "^6.24.0",
+    "babel-preset-react": "^6.23.0",
+    "css-loader": "^0.27.3",
+    "file-loader": "^0.10.1",
+    "jquery": "*",
+    "json-loader": "^0.5.4",
+    "react": "^15.4.2",
+    "react-dom": "^15.4.2",
+    "react-hot-loader": "^1.3.1",
+    "style-loader": "^0.14.0",
+    "url-loader": "^0.5.8",
+    "webpack": "^2.2.1",
+    "webpack-dev-server": "^2.4.2"
+  }
+}
